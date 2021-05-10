@@ -37,12 +37,10 @@ router.get('/callback',
       const response = await req.app.locals
         .msalClient.acquireTokenByCode(tokenRequest);
 
-        try{
-          // Save the user's homeAccountId in their session
-          req.session.userId = response.account.homeAccountId;
-        } catch (error) {
-          console.log(`ErrorSession: ${error}`);
-        }
+
+        // Save the user's homeAccountId in their session
+        req.session.userId = response.account.homeAccountId;
+
 
       const user = await graph.getUserDetails(response.accessToken);
 

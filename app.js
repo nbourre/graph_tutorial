@@ -20,8 +20,6 @@ var app = express();
 
 
 
-app.use('/calendar', calendarRouter);
-
 // In-memory storage of logged-in users
 // For demo purposes only, production apps should store
 // this in a reliable storage
@@ -58,6 +56,8 @@ app.use(session({
   saveUninitialized: false,
   unset: 'destroy'
 }));
+
+
 
 // Flash middleware
 app.use(flash());
@@ -96,6 +96,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
